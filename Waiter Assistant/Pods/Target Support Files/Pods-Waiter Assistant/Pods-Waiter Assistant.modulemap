@@ -1,0 +1,6 @@
+framework module Pods_Waiter_Assistant {
+  umbrella header "Pods-Waiter Assistant-umbrella.h"
+
+  export *
+  module * { export * }
+}
