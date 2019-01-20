@@ -50,7 +50,7 @@ class RegisterViewController: UIViewController {
                 let alert = UIAlertController.init(title: "Success", message: "Account created successfully", preferredStyle: .alert)
                 
                 alert.addAction(UIAlertAction(title: "Complete", style: .default, handler: { action in
-                    self.dismiss(animated: true, completion: nil)
+                    self.performSegue(withIdentifier: "segue_CreateRestaraunt", sender: self)
                 }))
                 self.present(alert, animated: true)
             } else{
