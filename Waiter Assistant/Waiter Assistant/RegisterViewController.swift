@@ -14,11 +14,18 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var field_username: UITextField!
     @IBOutlet weak var field_password: UITextField!
     @IBOutlet weak var field_confirmPassword: UITextField!
+    @IBOutlet weak var btn_register: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // Smoothing the edges on the buttons
+        btn_register.layer.cornerRadius = 20
+        // SMoothing the fields too!
+        field_username.layer.cornerRadius = 20
+        field_password.layer.cornerRadius = 20
+        field_confirmPassword.layer.cornerRadius = 20
+
     }
 
     @IBAction func button_Register(_ sender: UIButton) {
@@ -57,4 +64,7 @@ class RegisterViewController: UIViewController {
         }
     }
     
+    @IBAction func button_CloseView(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
 }

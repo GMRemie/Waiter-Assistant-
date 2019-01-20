@@ -169,16 +169,22 @@
                                         <color key="shadowColor" white="0.3651273544520548" alpha="0.38602311643835618" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <size key="shadowOffset" width="2" height="3"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ga-vI-CRw">
-                                        <rect key="frame" x="88" y="65" width="22" height="22"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Return"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wrg-Le-vLn">
+                                        <rect key="frame" x="10" y="70" width="54" height="53.5"/>
+                                        <state key="normal" image="back_arrow"/>
+                                        <connections>
+                                            <action selector="button_CloseView:" destination="Be8-XL-KeD" eventType="touchUpInside" id="Ht5-nY-Z2f"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.29902774095535278" green="0.5918305516242981" blue="0.95690816640853882" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
+                                    <constraint firstItem="Wrg-Le-vLn" firstAttribute="width" secondItem="nSx-Ic-4rh" secondAttribute="width" multiplier="0.07" id="Mij-Zw-jxM"/>
+                                    <constraint firstItem="Wrg-Le-vLn" firstAttribute="leading" secondItem="nSx-Ic-4rh" secondAttribute="leading" constant="10" id="T5X-aK-kJf"/>
                                     <constraint firstAttribute="bottom" secondItem="Rn9-Ax-AYF" secondAttribute="bottom" constant="5" id="WEq-P2-1Rg"/>
+                                    <constraint firstItem="Wrg-Le-vLn" firstAttribute="top" secondItem="nSx-Ic-4rh" secondAttribute="top" constant="70" id="gzE-9z-B3E"/>
                                     <constraint firstItem="Rn9-Ax-AYF" firstAttribute="centerX" secondItem="nSx-Ic-4rh" secondAttribute="centerX" id="lhj-d5-FMO"/>
+                                    <constraint firstAttribute="bottom" secondItem="Wrg-Le-vLn" secondAttribute="bottom" constant="30" id="pzu-cM-WCq"/>
                                 </constraints>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UAm-2d-fDs">
@@ -266,6 +272,7 @@
                         <viewLayoutGuide key="safeArea" id="jSO-09-4IP"/>
                     </view>
                     <connections>
+                        <outlet property="btn_register" destination="f4e-C8-p91" id="60R-4Z-KkY"/>
                         <outlet property="field_confirmPassword" destination="cpj-FN-Z6l" id="3Nh-yE-8Ed"/>
                         <outlet property="field_password" destination="di0-MT-HMX" id="WdW-Vp-6jW"/>
                         <outlet property="field_username" destination="UAm-2d-fDs" id="vGz-KN-2T6"/>
@@ -273,7 +280,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mL7-Rs-1l9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="716" y="17"/>
+            <point key="canvasLocation" x="723.4375" y="16.9921875"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="gWT-eX-eCl">
@@ -291,4 +298,7 @@
             <point key="canvasLocation" x="1388" y="-613"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="back_arrow" width="180" height="180"/>
+    </resources>
 </document>
