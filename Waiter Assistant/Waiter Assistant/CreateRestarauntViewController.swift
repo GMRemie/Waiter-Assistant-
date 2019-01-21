@@ -26,8 +26,10 @@ class CreateRestarauntViewController: UIViewController {
     @IBAction func button_CreateRestaurant(_ sender: UIButton) {
         // check to make sure user is signed in
         if let user = Auth.auth().currentUser{
-            let ownerEmail: String = user.uid
-            self.restaurantRef.child(ownerEmail).setValue(["name" : form_restarauntName.text])
+            let ownerID: String = user.uid
+
+            self.restaurantRef.child(ownerID).setValue(["name": form_restarauntName.text!])
+
             
             let alert = UIAlertController.init(title: "Success", message: "Restaurant has been created successfully!", preferredStyle: .alert)
             

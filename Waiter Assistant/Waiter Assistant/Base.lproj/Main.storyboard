@@ -144,6 +144,7 @@
                         <outlet property="btn_signUp" destination="l1Z-I6-Zyd" id="kxw-dF-YBS"/>
                         <outlet property="form_password" destination="cPK-HG-Kp0" id="hNN-Qa-8bn"/>
                         <outlet property="form_username" destination="PsQ-yL-yUy" id="7ac-sg-gBj"/>
+                        <segue destination="dLV-Nv-BXA" kind="show" identifier="segue_CreateRestaurant" id="Qqq-ch-6Z6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -281,7 +282,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mL7-Rs-1l9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="723.4375" y="16.9921875"/>
+            <point key="canvasLocation" x="711" y="17"/>
         </scene>
         <!--Create Restaraunt View Controller-->
         <scene sceneID="gWT-eX-eCl">
@@ -375,10 +376,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OBM-qI-00h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1440" y="27"/>
+            <point key="canvasLocation" x="1400" y="17"/>
         </scene>
     </scenes>
     <resources>
         <image name="back_arrow" width="180" height="180"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="88U-Z3-mKI"/>
+    </inferredMetricsTieBreakers>
 </document>
