@@ -50,6 +50,7 @@ class ViewController: UIViewController {
                     let restaurantName = value?["name"] as? String ?? ""
                     if restaurantName != ""{
                         // has a restaraunt. Take them to home screen
+                        self.performSegue(withIdentifier: "segue_Menu", sender: self)
                     }else{
                         //create a new restaraunt!
                         self.performSegue(withIdentifier: "segue_CreateRestaurant", sender: self)

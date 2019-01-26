@@ -14,6 +14,10 @@
 		D41D96B921ED8D57004B5911 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D41D96B721ED8D57004B5911 /* LaunchScreen.storyboard */; };
 		D449BCEA21F540B200FB7A80 /* CreateRestarauntViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D449BCE921F540B200FB7A80 /* CreateRestarauntViewController.swift */; };
 		D449BCEC21F648CF00FB7A80 /* RestaurantClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D449BCEB21F648CF00FB7A80 /* RestaurantClass.swift */; };
+		D449BCEE21F69DE100FB7A80 /* MenuListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D449BCED21F69DE100FB7A80 /* MenuListViewController.swift */; };
+		D449BCF021F8DDD900FB7A80 /* MenuPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D449BCEF21F8DDD900FB7A80 /* MenuPopupViewController.swift */; };
+		D449BCF221F96C3900FB7A80 /* MenuClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D449BCF121F96C3900FB7A80 /* MenuClass.swift */; };
+		D449BCF421FB880300FB7A80 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D449BCF321FB880300FB7A80 /* MenuTableViewCell.swift */; };
 		D478886221EFCD9000EE20C2 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D478886121EFCD9000EE20C2 /* RegisterViewController.swift */; };
 		D4BFD1F921EF957900345089 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D4BFD1F821EF957900345089 /* GoogleService-Info.plist */; };
 		E05B1318F5DB0541C23BAD1E /* Pods_Waiter_Assistant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DC4A21E53488F6AB67BD651 /* Pods_Waiter_Assistant.framework */; };
@@ -32,6 +36,10 @@
 		D41D96BA21ED8D57004B5911 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D449BCE921F540B200FB7A80 /* CreateRestarauntViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRestarauntViewController.swift; sourceTree = "<group>"; };
 		D449BCEB21F648CF00FB7A80 /* RestaurantClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantClass.swift; sourceTree = "<group>"; };
+		D449BCED21F69DE100FB7A80 /* MenuListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuListViewController.swift; sourceTree = "<group>"; };
+		D449BCEF21F8DDD900FB7A80 /* MenuPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPopupViewController.swift; sourceTree = "<group>"; };
+		D449BCF121F96C3900FB7A80 /* MenuClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuClass.swift; sourceTree = "<group>"; };
+		D449BCF321FB880300FB7A80 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		D478886121EFCD9000EE20C2 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		D4BFD1F821EF957900345089 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -87,8 +95,12 @@
 			isa = PBXGroup;
 			children = (
 				D41D96AE21ED8CF4004B5911 /* AppDelegate.swift */,
+				D449BCEF21F8DDD900FB7A80 /* MenuPopupViewController.swift */,
 				D41D96B021ED8CF4004B5911 /* ViewController.swift */,
 				D41D96B221ED8CF5004B5911 /* Main.storyboard */,
+				D449BCF321FB880300FB7A80 /* MenuTableViewCell.swift */,
+				D449BCF121F96C3900FB7A80 /* MenuClass.swift */,
+				D449BCED21F69DE100FB7A80 /* MenuListViewController.swift */,
 				D449BCE921F540B200FB7A80 /* CreateRestarauntViewController.swift */,
 				D449BCEB21F648CF00FB7A80 /* RestaurantClass.swift */,
 				D478886121EFCD9000EE20C2 /* RegisterViewController.swift */,
@@ -197,6 +209,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Waiter Assistant/Pods-Waiter Assistant-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -204,6 +217,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -221,7 +235,11 @@
 			files = (
 				D478886221EFCD9000EE20C2 /* RegisterViewController.swift in Sources */,
 				D449BCEC21F648CF00FB7A80 /* RestaurantClass.swift in Sources */,
+				D449BCF021F8DDD900FB7A80 /* MenuPopupViewController.swift in Sources */,
 				D41D96B121ED8CF4004B5911 /* ViewController.swift in Sources */,
+				D449BCEE21F69DE100FB7A80 /* MenuListViewController.swift in Sources */,
+				D449BCF421FB880300FB7A80 /* MenuTableViewCell.swift in Sources */,
+				D449BCF221F96C3900FB7A80 /* MenuClass.swift in Sources */,
 				D41D96AF21ED8CF4004B5911 /* AppDelegate.swift in Sources */,
 				D449BCEA21F540B200FB7A80 /* CreateRestarauntViewController.swift in Sources */,
 			);

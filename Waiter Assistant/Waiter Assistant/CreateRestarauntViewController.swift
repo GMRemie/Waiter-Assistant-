@@ -24,17 +24,20 @@ class CreateRestarauntViewController: UIViewController {
     }
     
     @IBAction func button_CreateRestaurant(_ sender: UIButton) {
+
         // check to make sure user is signed in
         if let user = Auth.auth().currentUser{
             let ownerID: String = user.uid
 
             self.restaurantRef.child(ownerID).setValue(["name": form_restarauntName.text!])
-
+            
             
             let alert = UIAlertController.init(title: "Success", message: "Restaurant has been created successfully!", preferredStyle: .alert)
             
             alert.addAction(UIAlertAction(title: "Continue", style: .default, handler: { action in
+                self.performSegue(withIdentifier: "segue_Menu", sender: self)
             }))
+            self.present(alert, animated: true, completion: nil)
             
         }
     }
