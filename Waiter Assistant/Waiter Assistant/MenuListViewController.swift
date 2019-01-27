@@ -14,9 +14,13 @@ class MenuListViewController: UIViewController, UITableViewDelegate,UITableViewD
     @IBOutlet weak var button_add: UIButton!
     @IBOutlet weak var view_topbar: UILabel!
     
+    @IBOutlet weak var label_header: UILabel!
+    
     @IBOutlet weak var tableVIew: UITableView!
     //Loaded menus
     var menues = [MenuClass]()
+    
+    // selected A Menu
     
     let rootRef = Database.database().reference()
     let restaurantRef = Database.database().reference(withPath: "created-restaurants")
@@ -40,6 +44,12 @@ class MenuListViewController: UIViewController, UITableViewDelegate,UITableViewD
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // update our text header
+        label_header.text = menues[indexPath.row].name
+        print(menues[indexPath.row].name)
     }
     
     @IBAction func clicked_addButton(_ sender: UIButton) {
@@ -123,4 +133,12 @@ class MenuListViewController: UIViewController, UITableViewDelegate,UITableViewD
         }
             
     }
+    // Creating Items
+    @IBAction func button_CreateItem(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "segue_CreateItem", sender: self)
+    }
+    
+    
+    
+    
 }
