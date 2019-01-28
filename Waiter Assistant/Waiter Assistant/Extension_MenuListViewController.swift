@@ -8,13 +8,15 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 extension MenuListViewController{
     
+    // firebase references
     
-    
-    
-    
+    func RefreshCollection(){
+        
+    }
     
     
     

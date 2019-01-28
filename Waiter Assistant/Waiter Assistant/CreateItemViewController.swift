@@ -31,6 +31,9 @@ class CreateItemViewController: UIViewController {
     }
     
     @IBAction func button_create(_ sender: UIButton) {
+        // handle errors etc here
+        
+        self.performSegue(withIdentifier: "segue_UnwindItem", sender: self)
     }
     
 }

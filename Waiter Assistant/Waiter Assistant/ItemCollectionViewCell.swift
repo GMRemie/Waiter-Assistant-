@@ -10,4 +10,9 @@ import UIKit
 
 class ItemCollectionViewCell: UICollectionViewCell {
     
+    
+    @IBOutlet weak var label_name: UILabel!
+    @IBOutlet weak var delete_button: UIButton!
+    
+    
 }

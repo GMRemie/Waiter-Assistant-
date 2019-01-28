@@ -12,6 +12,8 @@ class MenuClass{
     
     var name: String?
     var image: String?
+    var items: [ItemClass] = [ItemClass]()
+    
     
     func ConvertToDictionary() -> Dictionary<String, Any>{
         var returnDictionary = Dictionary<String, Any>()
