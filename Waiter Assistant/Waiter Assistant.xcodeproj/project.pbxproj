@@ -22,6 +22,8 @@
 		D449BCF921FD3BCB00FB7A80 /* CreateItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D449BCF821FD3BCB00FB7A80 /* CreateItemViewController.swift */; };
 		D449BCFB21FE1CAE00FB7A80 /* ItemClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D449BCFA21FE1CAE00FB7A80 /* ItemClass.swift */; };
 		D449BCFD21FE901900FB7A80 /* ItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D449BCFC21FE901900FB7A80 /* ItemCollectionViewCell.swift */; };
+		D449BD0521FFB5F900FB7A80 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D449BD0421FFB5F900FB7A80 /* SettingsViewController.swift */; };
+		D449BD072200FCD900FB7A80 /* WaiterObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D449BD062200FCD900FB7A80 /* WaiterObject.swift */; };
 		D478886221EFCD9000EE20C2 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D478886121EFCD9000EE20C2 /* RegisterViewController.swift */; };
 		D4BFD1F921EF957900345089 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D4BFD1F821EF957900345089 /* GoogleService-Info.plist */; };
 		E05B1318F5DB0541C23BAD1E /* Pods_Waiter_Assistant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DC4A21E53488F6AB67BD651 /* Pods_Waiter_Assistant.framework */; };
@@ -48,6 +50,8 @@
 		D449BCF821FD3BCB00FB7A80 /* CreateItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateItemViewController.swift; sourceTree = "<group>"; };
 		D449BCFA21FE1CAE00FB7A80 /* ItemClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemClass.swift; sourceTree = "<group>"; };
 		D449BCFC21FE901900FB7A80 /* ItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		D449BD0421FFB5F900FB7A80 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		D449BD062200FCD900FB7A80 /* WaiterObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaiterObject.swift; sourceTree = "<group>"; };
 		D478886121EFCD9000EE20C2 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		D4BFD1F821EF957900345089 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -113,12 +117,12 @@
 				D449BCF621FC13D600FB7A80 /* Extension_MenuListViewController.swift */,
 				D449BCF521FC127900FB7A80 /* Objects */,
 				D449BCE921F540B200FB7A80 /* CreateRestarauntViewController.swift */,
-				D449BCEB21F648CF00FB7A80 /* RestaurantClass.swift */,
 				D478886121EFCD9000EE20C2 /* RegisterViewController.swift */,
 				D4BFD1F821EF957900345089 /* GoogleService-Info.plist */,
 				D41D96B521ED8D57004B5911 /* Assets.xcassets */,
 				D41D96B721ED8D57004B5911 /* LaunchScreen.storyboard */,
 				D41D96BA21ED8D57004B5911 /* Info.plist */,
+				D449BD0421FFB5F900FB7A80 /* SettingsViewController.swift */,
 			);
 			path = "Waiter Assistant";
 			sourceTree = "<group>";
@@ -126,8 +130,10 @@
 		D449BCF521FC127900FB7A80 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				D449BCEB21F648CF00FB7A80 /* RestaurantClass.swift */,
 				D449BCFA21FE1CAE00FB7A80 /* ItemClass.swift */,
 				D449BCF121F96C3900FB7A80 /* MenuClass.swift */,
+				D449BD062200FCD900FB7A80 /* WaiterObject.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -262,8 +268,10 @@
 				D449BCF921FD3BCB00FB7A80 /* CreateItemViewController.swift in Sources */,
 				D449BCF721FC13D600FB7A80 /* Extension_MenuListViewController.swift in Sources */,
 				D449BCF421FB880300FB7A80 /* MenuTableViewCell.swift in Sources */,
+				D449BD0521FFB5F900FB7A80 /* SettingsViewController.swift in Sources */,
 				D449BCF221F96C3900FB7A80 /* MenuClass.swift in Sources */,
 				D41D96AF21ED8CF4004B5911 /* AppDelegate.swift in Sources */,
+				D449BD072200FCD900FB7A80 /* WaiterObject.swift in Sources */,
 				D449BCEA21F540B200FB7A80 /* CreateRestarauntViewController.swift in Sources */,
 				D449BCFD21FE901900FB7A80 /* ItemCollectionViewCell.swift in Sources */,
 			);
