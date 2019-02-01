@@ -115,10 +115,7 @@ class ViewController: UIViewController {
                 }
             }
         }
-        let alert = UIAlertController(title: "Sorry", message: "No account found for entered credentials!", preferredStyle: .alert)
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
-        alert.addAction(cancel)
-        self.present(alert, animated: true, completion: nil)
+
     }
     
     

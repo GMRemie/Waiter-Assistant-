@@ -197,10 +197,34 @@ class MenuListViewController: UIViewController, UITableViewDelegate,UITableViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell_Item", for: indexPath) as! ItemCollectionViewCell
         cell.label_name.text = selectedMenu?.items[indexPath.row].name
+        cell.tag = indexPath.row
+        cell.delete_button.addTarget(self, action: #selector(DeleteItem(sender:)), for: .touchUpInside)
         return cell
         
     }
     
+    @objc func DeleteItem(sender: UIButton){
+        restaurantRef.child(self.userID!).child("menu").observeSingleEvent(of: .value) { (snapshot) in
+            if let snapdict = snapshot.value as? NSDictionary{
+                for(key,values) in snapdict{
+                    let newValues = values as! NSDictionary
+                    if let items = newValues["items"] as? NSDictionary{
+                        for (nestKey,nestValues) in items{
+                            let itemData = nestValues as! NSDictionary
+                            let itemName = itemData["name"] as! String
+                            if self.selectedMenu!.items[sender.tag].name == itemName{
+                                self.restaurantRef.child(self.userID!).child("menu").child(key as! String).child("items").child(nestKey as! String).removeValue()
+                                self.refreshDatabase()
+                                self.collectionView.reloadData()
+                                return
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
     
     
 }
