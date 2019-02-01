@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/josephstorer/Desktop/Restaurant APP/App/Waiter Assistant/Waiter Assistant/Waiter Assistant/Objects/Order.swift">
+   </FileRef>
+   <FileRef
       location = "group:Waiter Assistant.xcodeproj">
    </FileRef>
    <FileRef

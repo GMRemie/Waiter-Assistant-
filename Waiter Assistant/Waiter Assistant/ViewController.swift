@@ -20,6 +20,11 @@ class ViewController: UIViewController {
     // path to our db
     var restaurantRef: DatabaseReference!
     
+    // Waiter authentication data
+    var managerString:String = ""
+    var waiterUID:String = ""
+    var waiterName:String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Updating our Sign In & Sign Up buttons. We're rounding the corners
@@ -38,6 +43,14 @@ class ViewController: UIViewController {
         if form_username == nil { return }
         if form_password == nil { return }
         
+        self.managerString = ""
+        self.waiterUID = ""
+        
+        if !(form_username.text?.contains("@"))! {
+            print("Attempting signin as waiter")
+            waiterLogin(user: form_username.text!, pass: form_password.text!)
+            return
+        }
         
         Auth.auth().signIn(withEmail: form_username.text!, password: form_password.text!){ user, error in
             
@@ -70,19 +83,58 @@ class ViewController: UIViewController {
                     self.form_password.text = ""
                 }))
                 self.present(alert, animated: true)
-                
             }
-            
-            
         }
-        
-        
-        
-        
+    }
+    
+    // Handle waiter authentication
+    func waiterLogin(user:String,pass:String){
+        restaurantRef.observeSingleEvent(of: .value) { (snapshot) in
+            if let snapdict = snapshot.value as? NSDictionary{
+                
+                for (key,values) in snapdict {
+                    let newValues = values as! NSDictionary
+                    if let accounts = newValues["accounts"] as? NSDictionary{
+                        
+                        
+                        for (wUid,values) in accounts{
+                            let accountDetails = values as! NSDictionary
+                            let username = accountDetails["username"] as! String
+                            let password = accountDetails["password"] as! String
+                            let displayName = accountDetails["displayname"] as! String
+                            if (user == username) && (pass == password){
+                                print("Login success!")
+                                self.managerString = key as! String
+                                self.waiterUID = wUid as! String
+                                self.waiterName = displayName
+                                self.performSegue(withIdentifier: "segue_Waiter", sender: self)
+                                break
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        let alert = UIAlertController(title: "Sorry", message: "No account found for entered credentials!", preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        alert.addAction(cancel)
+        self.present(alert, animated: true, completion: nil)
     }
     
     
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? UITabBarController{
+            if let top = vc.viewControllers![0] as? WAITER_TableViewController{
+                top.managerID = self.managerString
+                top.waiterUid = self.waiterUID
+                top.waiterName = self.waiterName
+            }
+            if let orders = vc.viewControllers![1] as? WAITER_OrdersViewController{
+                orders.managerID = self.managerString
+                orders.waiterUid = self.waiterUID
+            }
+        }
+    }
 
 
 }

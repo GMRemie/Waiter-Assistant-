@@ -36,6 +36,7 @@ class MenuListViewController: UIViewController, UITableViewDelegate,UITableViewD
     let restaurantRef = Database.database().reference(withPath: "created-restaurants")
     let storage = Storage.storage().reference()
     let userID = Auth.auth().currentUser?.uid
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         button_CreateItem.layer.borderWidth = 2
@@ -138,7 +139,6 @@ class MenuListViewController: UIViewController, UITableViewDelegate,UITableViewD
             
                 for (key,values) in value {
                 let newValues = values as! NSDictionary
-                print(newValues["name"])
                 let name = newValues["name"] as! String
                 let image = newValues["image"] as! String
                 let Menu: MenuClass = MenuClass(name: name, image: image)

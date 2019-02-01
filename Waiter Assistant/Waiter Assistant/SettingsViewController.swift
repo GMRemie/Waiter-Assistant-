@@ -26,10 +26,12 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var button_deleteRestaurant: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var tablesTableView: UITableView!
     
     //Array for our tableView
     var waiters = [WaiterObject]()
-    
+    // Array for our tables
+    var tables = [TableClass]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +52,22 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 self.refreshAccounts(snapshot: accounts)
             }
         }
+        restaurantRef.child(self.userID!).child("tables").observe(.value) { (snapshot) in
+            if let loadedTables = snapshot.value as? NSDictionary{
+                self.refreshTables(snapshot: loadedTables)
+            }
+        }
+    }
+    // update our tablesTableView
+    func refreshTables(snapshot: NSDictionary){
+        tables.removeAll()
+        for (key,values) in snapshot{
+            let newValues = values as! NSDictionary
+            let tableName = newValues["tableName"] as! String
+            tables.append(TableClass(tableName: tableName, waiter: ""))
+        }
+        print("reloading data")
+        tablesTableView.reloadData()
     }
     
     // update our tableview and reload data from firebase database
@@ -117,13 +135,13 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     @IBAction func createAccount(_ sender: UIButton) {
         let alert = UIAlertController(title: "Create account", message: "Enter the fields to create the waiters account", preferredStyle: .alert)
         alert.addTextField{(textField) in
-            textField.text = "Display Name"
+            textField.placeholder = "Display name"
         }
         alert.addTextField{(textField) in
-            textField.text = "Username"
+            textField.placeholder = "Username"
         }
         alert.addTextField{(textField) in
-            textField.text = "Password"
+            textField.placeholder = "Password"
         }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel)
         let create = UIAlertAction(title: "Create", style: .default) { (UIAlertAction) in
@@ -137,9 +155,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 
                 let upload = self.restaurantRef.child(self.userID!).child("accounts").childByAutoId().setValue(waiter.ConvertToDictionary())
                 // notify the user
-                
-                
-                
+    
             }
         }
         alert.addAction(cancel)
@@ -152,47 +168,100 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     // TableView management
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return waiters.count
+    func tableView(_ tableViews: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if (tableViews == tableView){
+            return waiters.count
+        }else{
+            print("tables")
+            return tables.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell_Account")
-        let waiter:WaiterObject = waiters[indexPath.row]
-        cell?.textLabel?.text = "Name: \(waiter.displayName!)  | Username: \(waiter.username!)  | Password: \(waiter.password!)"
-        return cell!
+        if tableView == tablesTableView{
+            let cell = tablesTableView.dequeueReusableCell(withIdentifier: "cell_Table")
+            cell?.textLabel?.text = tables[indexPath.row].tableName
+            return cell!
+        }else{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell_Account")
+            let waiter:WaiterObject = waiters[indexPath.row]
+            cell?.textLabel?.text = "Name: \(waiter.displayName!)  | Username: \(waiter.username!)  | Password: \(waiter.password!)"
+            return cell!
+        }
     }
     
 
     
     // deleting accounts
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let alert = UIAlertController(title: "Delete account", message: "Are you sure you want to delete the user?", preferredStyle: .alert)
+        
+        let alert = UIAlertController(title: "Delete", message: "Are you sure you want to delete this?", preferredStyle: .alert)
         let cancel = UIAlertAction(title: "Cancel", style: .cancel)
         let confirm = UIAlertAction(title: "Confirm", style: .destructive) { (UIAlertAction) in
             
-            // find the value key in firebase
-            self.restaurantRef.child(self.userID!).child("accounts").observeSingleEvent(of: .value, with: { (snapshot) in
-                if let snap = snapshot.value as? NSDictionary{
-                    for (key,values) in snap {
-                        let account = values as! NSDictionary
-                        let w:WaiterObject = self.waiters[indexPath.row]
-                        if (account.isEqual(w.ConvertToDictionary())){
-                            self.deleteAccountByKey(key: key as! String)
-                            break
+            if tableView == self.tableView{
+                // find the value key in firebase
+                self.restaurantRef.child(self.userID!).child("accounts").observeSingleEvent(of: .value, with: { (snapshot) in
+                    if let snap = snapshot.value as? NSDictionary{
+                        for (key,values) in snap {
+                            let account = values as! NSDictionary
+                            let w:WaiterObject = self.waiters[indexPath.row]
+                            if (account.isEqual(w.ConvertToDictionary())){
+                                self.waiters.remove(at: indexPath.row)
+                                tableView.deleteRows(at: [indexPath], with: .fade)
+                                self.restaurantRef.child(self.userID!).child("accounts").child(key as! String).removeValue()
+                                break
+                            }
                         }
                     }
-                }
-            })
+                })
+            }else{
+                self.restaurantRef.child(self.userID!).child("tables").observeSingleEvent(of: .value, with: { (snapshot) in
+                    if let snap = snapshot.value as? NSDictionary{
+                        for (key,values) in snap {
+                            let account = values as! NSDictionary
+                            let tableName = account["tableName"] as! String
+                            let w:TableClass = self.tables[indexPath.row]
+                            if (tableName == w.tableName){
+                                self.tables.remove(at: indexPath.row)
+                                self.tablesTableView.deleteRows(at: [indexPath], with: .fade)
+                                self.restaurantRef.child(self.userID!).child("tables").child(key as! String).removeValue()
+                                break
+                            }
+                        }
+                    }
+                })
+            }
         }
-        
         alert.addAction(cancel)
         alert.addAction(confirm)
         self.present(alert, animated: true, completion: nil)
+        
+    }
+
+    // table management
+    
+    @IBAction func createTable(_ sender: UIButton) {
+        let popup = UIAlertController(title: "Create table", message: "Create a restaurant table", preferredStyle: .alert)
+        popup.addTextField{(textField) in
+            textField.placeholder = "Table name"
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        let create = UIAlertAction(title: "Create", style: .default) { (UIAlertAction) in
+            let tableName = popup.textFields![0].text
+            if tableName!.count > 0 {
+                let newTable = TableClass(tableName: tableName!, waiter: "")
+                self.restaurantRef.child(self.userID!).child("tables").childByAutoId().setValue(newTable.convertToDictionary())
+            }
+        }
+        popup.addAction(cancel)
+        popup.addAction(create)
+        self.present(popup, animated: true, completion: nil)
+        
     }
     
-    func deleteAccountByKey(key: String){
-        self.restaurantRef.child(self.userID!).child("accounts").child(key).removeValue()
-
-    }
+    
+    
 }
+
+
